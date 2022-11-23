@@ -22,6 +22,13 @@ io.on("connection", newConnection);
 //we expect one parameter, pass a new information during the connection
 //when the pc is connect to our service, print out a line of code
 function newConnection(newSocket) {
-    console.log(newSocket);
+    console.log(newSocket.id);
+
+    newSocket.on("mouse", mouseReceived);
+
+    function mouseReceived(dataReceived) {
+        console.log(dataReceived);
+        newSocket.broadcast.emit("mouseBroadcast", dataReceived); //send to all the other connections. Emit a message
+    }
 }
 
