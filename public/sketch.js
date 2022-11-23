@@ -3,8 +3,8 @@ let clientSocket = io();
 
 clientSocket.on("connect", newConnection);
 
-function newConnection() {
-  console.log(clientSocket.io);
+function newConnection(newSocket) {
+  console.log(newSocket.id);
 }
 
 function setup() {
